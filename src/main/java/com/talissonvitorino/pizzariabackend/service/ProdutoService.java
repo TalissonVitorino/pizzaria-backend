@@ -1,4 +1,4 @@
-package com.talissonvitorino.pizzariabackend;
+package com.talissonvitorino.pizzariabackend.service;
 
 import com.talissonvitorino.pizzariabackend.entity.Produto;
 import com.talissonvitorino.pizzariabackend.repository.ProdutoRepository;
@@ -24,5 +24,11 @@ public class ProdutoService {
 
     public Produto buscarPorId(Long id) {
         return produtoRepository.findById(id).orElseThrow();
+    }
+
+    public void deletar(Long id) {
+        Produto produto = buscarPorId(id);
+        produtoRepository.delete(produto);
+        produtoRepository.deleteById(id);
     }
 }

@@ -1,7 +1,8 @@
 package com.talissonvitorino.pizzariabackend.controller;
 
-import com.talissonvitorino.pizzariabackend.ProdutoService;
+import com.talissonvitorino.pizzariabackend.service.ProdutoService;
 import com.talissonvitorino.pizzariabackend.entity.Produto;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,12 @@ public class ProdutoController {
     @GetMapping("/produto/{id}")
     public Produto buscarProdutoPorId(@PathVariable Long id) {
         return produtoService.buscarPorId(id);
+    }
+
+    @DeleteMapping("/produto/{id}")
+    public ResponseEntity<Void> deletarProdutoPorId(@PathVariable Long id) {
+        produtoService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

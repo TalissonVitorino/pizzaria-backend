@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "produto")
 public class Produto {
 
-    @Id @Column(name = "id") @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @Column(name = "id") @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "nome")
@@ -31,7 +31,8 @@ public class Produto {
     }
 
     public void setNome(String nome) {
-        if (nome == null || nome.trim().isEmpty()) throw new IllegalArgumentException("Nome do produto deve ser informado");
+        if (nome == null || nome.trim().isEmpty())
+            throw new IllegalArgumentException("Nome do produto deve ser informado");
         this.nome = nome;
     }
 

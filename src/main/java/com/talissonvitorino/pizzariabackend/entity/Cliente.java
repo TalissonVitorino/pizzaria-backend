@@ -1,22 +1,24 @@
 package com.talissonvitorino.pizzariabackend.entity;
 
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "cliente")
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = com.talissonvitorino.pizzariabackend.entity.GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
-    private String nome;
-    private String email;
-    private String telefone;
 
-    // Getters e Setters
+    @Column(name = "nome", nullable = false)
+    private String nome;
+
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @Column(name = "telefone", nullable = false)
+    private String telefone;
 
     public Long getId() {
         return id;
@@ -31,6 +33,9 @@ public class Cliente {
     }
 
     public void setNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome do cliente não pode ser vazio");
+        }
         this.nome = nome;
     }
 
@@ -39,6 +44,9 @@ public class Cliente {
     }
 
     public void setEmail(String email) {
+        if (email == null || email.trim().isEmpty()) {
+            throw new IllegalArgumentException("Email do cliente não pode ser vazio");
+        }
         this.email = email;
     }
 
@@ -47,6 +55,9 @@ public class Cliente {
     }
 
     public void setTelefone(String telefone) {
+        if (telefone == null || telefone.trim().isEmpty()) {
+            throw new IllegalArgumentException("Telefone do cliente não pode ser vazio");
+        }
         this.telefone = telefone;
     }
 }
